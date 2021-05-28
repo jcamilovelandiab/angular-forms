@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Person, Favorite } from '../../interfaces/template.interfaces';
 
 @Component({
   selector: 'app-dynamics',
@@ -7,15 +8,20 @@ import { NgForm } from '@angular/forms';
   styles: [
   ]
 })
-export class DynamicsComponent implements OnInit {
+export class DynamicsComponent {
+
+  person: Person = {
+    name: 'Camilo',
+    favorites: [
+      { id: 1, name: 'Metal Gear' },
+      { id: 2, name: 'Death Stranding' }
+    ]
+  }
 
   @ViewChild("dynamicForm")
   dynamicForm!: NgForm;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   save() {
     console.log('Form posted');
