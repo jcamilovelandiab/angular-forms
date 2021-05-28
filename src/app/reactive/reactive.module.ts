@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { ReactiveRoutingModule } from './reactive-routing.module';
 import { BasicsComponent } from './pages/basics/basics.component';
-import { DinamicsComponent } from './pages/dinamics/dinamics.component';
+import { DynamicsComponent } from './pages/dynamics/dynamics.component';
 import { SwitchesComponent } from './pages/switches/switches.component';
 
 
 @NgModule({
   declarations: [
     BasicsComponent,
-    DinamicsComponent,
+    DynamicsComponent,
     SwitchesComponent
   ],
   imports: [

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-dinamics',
-  templateUrl: './dinamics.component.html',
+  selector: 'app-dynamics',
+  templateUrl: './dynamics.component.html',
   styles: [
   ]
 })
-export class DinamicsComponent implements OnInit {
+export class DynamicsComponent implements OnInit {
 
   constructor() { }
 

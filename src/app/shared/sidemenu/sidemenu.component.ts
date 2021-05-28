@@ -19,8 +19,8 @@ export class SidemenuComponent {
       route: 'template/basics'
     },
     {
-      text: 'Dinamics',
-      route: 'template/dinamics'
+      text: 'Dynamics',
+      route: 'template/dynamics'
     },
     {
       text: 'Switches',
@@ -34,8 +34,8 @@ export class SidemenuComponent {
       route: 'reactive/basics'
     },
     {
-      text: 'Dinamics',
-      route: 'reactive/dinamics'
+      text: 'Dynamics',
+      route: 'reactive/dynamics'
     },
     {
       text: 'Switches',
