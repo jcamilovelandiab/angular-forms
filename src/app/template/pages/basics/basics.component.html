@@ -3,16 +3,30 @@
 
 <div class="row">
     <div class="col">
-        <form>
+        <form
+            (ngSubmit)="save( myForm )"
+            #myForm="ngForm"
+            autocomplete="off"
+        >
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Product</label>
                 <div class="col-sm-9">
                     <input
                         type="text"
                         class="form-control"
+                        ngModel
+                        name="product"
                         placeholder="Product name"
+                        required
+                        minlength="3"
                     >
-                    <span class="form-text text-danger">Must be of 3 characters</span>
+                    <span
+                        class="form-text text-danger"
+                        *ngIf="myForm.controls.product?.invalid &&
+                               myForm.controls.product.touched"
+                    >
+                        Must be of 3 characters
+                    </span>
                 </div>
             </div>
             <div class="mb-3 row">
@@ -21,7 +35,11 @@
                     <input
                         type="number"
                         class="form-control"
+                        ngModel
+                        name="price"
                         placeholder="Product price"
+                        min="0"
+                        required
                     >
                 </div>
             </div>
@@ -31,7 +49,10 @@
                     <input
                         type="number"
                         class="form-control"
+                        ngModel
+                        name="stock"
                         placeholder="Product stock"
+                        required
                     >
                 </div>
             </div>
@@ -46,5 +67,13 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <span>Valid</span>
+        <pre>{{ myForm.valid | json }}</pre>
+        <pre>{{ myForm.value | json }}</pre>
     </div>
 </div>
