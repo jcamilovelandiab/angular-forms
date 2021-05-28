@@ -22,8 +22,7 @@
                     >
                     <span
                         class="form-text text-danger"
-                        *ngIf="myForm.controls.product?.invalid &&
-                               myForm.controls.product.touched"
+                        *ngIf="isValid()"
                     >
                         Must be of 3 characters
                     </span>
