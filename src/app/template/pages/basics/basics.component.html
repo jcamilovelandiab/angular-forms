@@ -8,6 +8,7 @@
             #myForm="ngForm"
             autocomplete="off"
         >
+            <!-- Product's name -->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Product</label>
                 <div class="col-sm-9">
@@ -22,12 +23,13 @@
                     >
                     <span
                         class="form-text text-danger"
-                        *ngIf="isValid()"
+                        *ngIf="validName()"
                     >
                         Must be of 3 characters
                     </span>
                 </div>
             </div>
+            <!-- Product's price -->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Price</label>
                 <div class="col-sm-9">
@@ -40,8 +42,15 @@
                         min="0"
                         required
                     >
+                    <span
+                        class="form-text text-danger"
+                        *ngIf="validPrice()"
+                    >
+                        Must be a price greater than 0
+                    </span>
                 </div>
             </div>
+            <!-- Product's stock -->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Product stock</label>
                 <div class="col-sm-9">
@@ -50,9 +59,17 @@
                         class="form-control"
                         ngModel
                         name="stock"
+                        customMin
+                        [minimum]="0"
                         placeholder="Product stock"
                         required
                     >
+                    <span
+                        class="form-text text-danger"
+                        *ngIf="validStock()"
+                    >
+                        Invalid stock
+                    </span>
                 </div>
             </div>
             <div class="row">
@@ -60,6 +77,7 @@
                     <button
                         type="submit"
                         class="btn btn-primary float-end"
+                        [disabled]="myForm.invalid"
                     >
                         Save
                     </button>
@@ -73,6 +91,18 @@
     <div class="col">
         <span>Valid</span>
         <pre>{{ myForm.valid | json }}</pre>
+
+        <span>Pristine</span>
+        <pre>{{ myForm.pristine }}</pre>
+
+        <span>Touched</span>
+        <pre>{{ myForm.touched }}</pre>
+
+        <span>Value</span>
         <pre>{{ myForm.value | json }}</pre>
+
+        <span>CustomDirective</span>
+        <pre>{{ myForm.controls.stock?.errors | json }}</pre>
+
     </div>
 </div>

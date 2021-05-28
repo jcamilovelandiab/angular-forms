@@ -17,13 +17,23 @@ export class BasicsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  isValid(): boolean {
-    return this.myForm?.controls.product?.invalid &&
-        this.myForm.controls.product.touched;
-  }
-
   save( myForm: NgForm ) {
     console.log( myForm.value );
+  }
+
+  validName(): boolean {
+    return this.myForm?.controls.product?.invalid &&
+        this.myForm?.controls.product?.touched;
+  }
+
+  validPrice(): boolean {
+    return this.myForm?.controls.price?.touched &&
+      this.myForm?.controls.price?.value < 0;
+  }
+
+  validStock(): boolean {
+    return this.myForm?.controls.stock?.invalid &&
+        this.myForm.controls.stock.touched; 
   }
 
 }
