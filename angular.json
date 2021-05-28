@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "formsApp"
+    }
+  },
+  "defaultProject": "formsApp",
+  "cli": {
+    "analytics": "44599b52-b929-4d7e-bdd1-5d8a3858c657"
+  }
 }
