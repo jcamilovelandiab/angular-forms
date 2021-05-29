@@ -10,6 +10,8 @@ import { Person, Favorite } from '../../interfaces/template.interfaces';
 })
 export class DynamicsComponent {
 
+  newGame: string = '';
+
   person: Person = {
     name: 'Camilo',
     favorites: [
@@ -30,6 +32,19 @@ export class DynamicsComponent {
   validName() {
     return this.dynamicForm?.controls.name?.errors && 
         this.dynamicForm?.controls.name?.touched
+  }
+
+  delete( index: number ){
+    this.person.favorites.splice(index, 1);
+  }
+
+  addGame() {
+    const newFavorite: Favorite = {
+      id: this.person.favorites.length + 1,
+      name: this.newGame
+    }
+    this.person.favorites.push({ ...newFavorite });
+    this.newGame = '';
   }
 
 }
