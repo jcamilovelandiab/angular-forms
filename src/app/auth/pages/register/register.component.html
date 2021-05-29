@@ -4,7 +4,9 @@
 <div class="row">
     <div class="col">
         <form
+            [formGroup]="registerForm"
             autocomplete="off"
+            (ngSubmit)="register()"
         >
             <!-- Name -->
             <div class="row mb-3">
@@ -14,8 +16,12 @@
                         type="text"
                         class="form-control"
                         placeholder="User's fullname"
+                        formControlName="fullname"
                     >
-                    <span class="form-text text-danger">
+                    <span
+                        class="form-text text-danger"
+                        *ngIf="validField('fullname')"
+                    >
                         Must be in first and last name format
                     </span>
                 </div>
@@ -66,7 +72,10 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-primary float-end">
+                    <button
+                        type="submit"
+                        class="btn btn-primary float-end"
+                    >
                         Register
                     </button>
                 </div>
@@ -74,3 +83,7 @@
         </form>
     </div>
 </div>
+
+<h2>Form Valid: {{ registerForm.valid }}</h2>
+<h2>Name</h2>
+<pre>{{ registerForm.controls.fullname.errors | json }}</pre>
