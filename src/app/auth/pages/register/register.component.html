@@ -34,7 +34,14 @@
                         type="email"
                         class="form-control"
                         placeholder="User's email"
+                        formControlName="email"
                     >
+                    <span
+                        class="form-text text-danger"
+                        *ngIf="validField('email')"
+                    >
+                        Must be a valid email
+                    </span>
                 </div>
             </div>
             <!-- Username -->
@@ -87,3 +94,5 @@
 <h2>Form Valid: {{ registerForm.valid }}</h2>
 <h2>Name</h2>
 <pre>{{ registerForm.controls.fullname.errors | json }}</pre>
+<h2>Email</h2>
+<pre>{{ registerForm.controls.email.errors | json }}</pre>
