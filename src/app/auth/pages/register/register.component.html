@@ -52,7 +52,14 @@
                         type="text"
                         class="form-control"
                         placeholder="Username"
+                        formControlName="username"
                     >
+                    <span
+                        class="form-text text-danger"
+                        *ngIf="validField('username')"
+                    >
+                        The username can't be camilo
+                    </span>
                 </div>
             </div>
             <!-- Password -->
@@ -96,3 +103,5 @@
 <pre>{{ registerForm.controls.fullname.errors | json }}</pre>
 <h2>Email</h2>
 <pre>{{ registerForm.controls.email.errors | json }}</pre>
+<h2>Username</h2>
+<pre>{{ registerForm.controls.username.errors | json }}</pre>
