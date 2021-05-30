@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ValidatorService } from '../../../shared/validator/validator.service';
+import { EmailValidatorService } from '../../../shared/validator/email-validator.service';
 
 @Component({
   selector: 'app-register',
@@ -11,8 +12,15 @@ import { ValidatorService } from '../../../shared/validator/validator.service';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup = this.formBuilder.group({
-    fullname: ['', [ Validators.required, Validators.pattern(this.validatorService.fullnamePattern) ] ],
-    email: ['', [ Validators.required, Validators.pattern(this.validatorService.emailPattern) ] ],
+    fullname: [ '', [ Validators.required, Validators.pattern(this.validatorService.fullnamePattern) ] ],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(this.validatorService.emailPattern)
+      ],
+      [ this.emailValidatorService ]
+    ],
     username: ['', [ Validators.required, this.validatorService.usernameValidator  ] ],
     password: ['', [ Validators.required, Validators.minLength(6) ] ],
     confirmPassword: ['', [ Validators.required ] ]
@@ -22,7 +30,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private validatorService: ValidatorService
+    private validatorService: ValidatorService,
+    private emailValidatorService: EmailValidatorService
   ) { }
 
   ngOnInit(): void {
