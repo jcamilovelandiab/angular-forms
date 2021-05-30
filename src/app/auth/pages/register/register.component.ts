@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ValidatorService } from '../../../shared/validator/validator.service';
 
 @Component({
   selector: 'app-register',
@@ -9,27 +10,16 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 })
 export class RegisterComponent implements OnInit {
 
-  fullnamePattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
-  emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-  
-  usernameValidator( formControl: FormControl) {
-    const value: string = formControl.value?.trim().toLowerCase();
-    if( value === 'camilo' ) {
-      return {
-        noCamilo: true
-      };
-    }
-    return null;
-  }
-
-
   registerForm: FormGroup = this.formBuilder.group({
-    fullname: ['', [ Validators.required, Validators.pattern(this.fullnamePattern) ] ],
-    email: ['', [ Validators.required, Validators.pattern(this.emailPattern) ] ],
-    username: ['', [ Validators.required, this.usernameValidator ] ]
+    fullname: ['', [ Validators.required, Validators.pattern(this.validatorService.fullnamePattern) ] ],
+    email: ['', [ Validators.required, Validators.pattern(this.validatorService.emailPattern) ] ],
+    username: ['', [ Validators.required, this.validatorService.usernameValidator  ] ]
   });
 
-  constructor( private formBuilder: FormBuilder ) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private validatorService: ValidatorService
+  ) { }
 
   ngOnInit(): void {
     this.registerForm.reset({
