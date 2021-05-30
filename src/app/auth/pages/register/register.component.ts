@@ -13,7 +13,11 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup = this.formBuilder.group({
     fullname: ['', [ Validators.required, Validators.pattern(this.validatorService.fullnamePattern) ] ],
     email: ['', [ Validators.required, Validators.pattern(this.validatorService.emailPattern) ] ],
-    username: ['', [ Validators.required, this.validatorService.usernameValidator  ] ]
+    username: ['', [ Validators.required, this.validatorService.usernameValidator  ] ],
+    password: ['', [ Validators.required, Validators.minLength(6) ] ],
+    confirmPassword: ['', [ Validators.required ] ]
+  },{
+    validators: [ this.validatorService.matchFields('password', 'confirmPassword') ]
   });
 
   constructor(

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,23 @@ export class ValidatorService {
       };
     }
     return null;
+  }
+
+  matchFields( fieldOne: string, fieldTwo: string ) {
+    return ( formGroup: AbstractControl ): ValidationErrors | null => {
+      const fieldOneValue = formGroup.get(fieldOne)?.value;
+      const fieldTwoValue = formGroup.get(fieldTwo)?.value;
+      if( fieldOneValue !== fieldTwoValue ) {
+        formGroup.get(fieldTwo)?.setErrors({
+          notMatch: true
+        });
+        return {
+          notMatch: true
+        };
+      }
+      formGroup.get(fieldTwo)?.setErrors(null);
+      return null;
+    };
   }
 
 }
