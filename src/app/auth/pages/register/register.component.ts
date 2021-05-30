@@ -33,6 +33,18 @@ export class RegisterComponent implements OnInit {
     private emailValidatorService: EmailValidatorService
   ) { }
 
+  get emailErrorMsg(): string {
+    const errors = this.registerForm.get('email')?.errors;
+    if( errors?.required ) {
+      return 'Email is required';
+    } else if ( errors?.pattern ) {
+      return 'The value entered is not in email format';
+    } else if ( errors?.emailTaken ) {
+      return 'The email is already taken';
+    }
+    return '';
+  }
+
   ngOnInit(): void {
     this.registerForm.reset({
       fullname: 'Camilo Velandia',
