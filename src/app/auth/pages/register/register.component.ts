@@ -14,8 +14,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup = this.formBuilder.group({
     fullname: [ '', [ Validators.required, Validators.pattern(this.validatorService.fullnamePattern) ] ],
     email: [
-      '',
-      [
+      '', [
         Validators.required,
         Validators.pattern(this.validatorService.emailPattern)
       ],
@@ -37,8 +36,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm.reset({
       fullname: 'Camilo Velandia',
-      email: 'jcamilovelandiab@gmail.com',
-      username: 'jcamilovelandiab'
+      email: 'test1@test.com',
+      username: 'jcamilovelandiab',
+      password: '123456',
+      confirmPassword: '123456'
     });
   }
 

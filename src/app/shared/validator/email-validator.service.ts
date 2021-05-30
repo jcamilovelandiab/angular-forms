@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,7 @@ export class EmailValidatorService implements AsyncValidator {
     console.log(email);
     return this.httpClient.get<any[]>(`http://localhost:3000/users?q=${email}`)
         .pipe(
+          delay(3000),
           map( response => {
             return ( response.length === 0)
               ? null

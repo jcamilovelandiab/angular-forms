@@ -103,6 +103,7 @@
                     <button
                         type="submit"
                         class="btn btn-primary float-end"
+                        [disabled]="registerForm.pending"
                     >
                         Register
                     </button>
@@ -113,6 +114,8 @@
 </div>
 
 <h2>Form Valid: {{ registerForm.valid }}</h2>
+<h2>Form Status: {{ registerForm.status }}</h2>
+<h2>Form Pending: {{ registerForm.pending }}</h2>
 
 <h2>Form Errors:</h2>
 <pre>{{ registerForm.errors | json }}</pre>
